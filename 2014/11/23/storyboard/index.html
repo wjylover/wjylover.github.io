@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,指南针," />
+  <meta name="keywords" content="iOS," />
 
 
 
@@ -51,35 +51,25 @@
 
 
 
-<meta name="description" content="1.准备一张罗盘图片
-2.代码实现
-首先设置三个属性
-
-@property (nonatomic, strong) CLLocationManager *manager;
-@property (nonatomic, strong) UIImageView *myImage;
-@property (nonatomic, assign) CLLocationDirection currentHeadi">
+<meta name="description" content="一些storyboard中的用法1.空工程中通过创建storyboard文件加载页面// 获取Main.storyboard
+UIStoryboard *mainStory = [UIStoryboard storyboardWithName:@&quot;Main&quot; bundle:nil];
+// 获取Main.storyboard中的第2个视图
+SecondViewController *secondC">
 <meta property="og:type" content="article">
-<meta property="og:title" content="指南针">
-<meta property="og:url" content="http://yoursite.com/2015/06/28/指南针/index.html">
+<meta property="og:title" content="storyboard中的控制器">
+<meta property="og:url" content="http://yoursite.com/2014/11/23/storyboard/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1.准备一张罗盘图片
-2.代码实现
-首先设置三个属性
-
-@property (nonatomic, strong) CLLocationManager *manager;
-@property (nonatomic, strong) UIImageView *myImage;
-@property (nonatomic, assign) CLLocationDirection currentHeadi">
-<meta property="og:image" content="http://i12.tietuku.com/a805df144bb4c0e4.png">
-<meta property="og:updated_time" content="2015-12-10T07:33:05.000Z">
+<meta property="og:description" content="一些storyboard中的用法1.空工程中通过创建storyboard文件加载页面// 获取Main.storyboard
+UIStoryboard *mainStory = [UIStoryboard storyboardWithName:@&quot;Main&quot; bundle:nil];
+// 获取Main.storyboard中的第2个视图
+SecondViewController *secondC">
+<meta property="og:updated_time" content="2015-12-05T08:13:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="指南针">
-<meta name="twitter:description" content="1.准备一张罗盘图片
-2.代码实现
-首先设置三个属性
-
-@property (nonatomic, strong) CLLocationManager *manager;
-@property (nonatomic, strong) UIImageView *myImage;
-@property (nonatomic, assign) CLLocationDirection currentHeadi">
+<meta name="twitter:title" content="storyboard中的控制器">
+<meta name="twitter:description" content="一些storyboard中的用法1.空工程中通过创建storyboard文件加载页面// 获取Main.storyboard
+UIStoryboard *mainStory = [UIStoryboard storyboardWithName:@&quot;Main&quot; bundle:nil];
+// 获取Main.storyboard中的第2个视图
+SecondViewController *secondC">
 
 
 
@@ -91,7 +81,7 @@
   };
 </script>
 
-  <title> 指南针 | Hexo </title>
+  <title> storyboard中的控制器 | Hexo </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -211,7 +201,7 @@
             
             
               
-                指南针
+                storyboard中的控制器
               
             
           </h1>
@@ -220,8 +210,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-06-28T21:37:28+08:00" content="2015-06-28">
-              2015-06-28
+            <time itemprop="dateCreated" datetime="2014-11-23T16:02:17+08:00" content="2014-11-23">
+              2014-11-23
             </time>
           </span>
 
@@ -244,33 +234,21 @@
       
 
       
-        <span itemprop="articleBody"><h2 id="1-准备一张罗盘图片">1.准备一张罗盘图片</h2><p><img src="http://i12.tietuku.com/a805df144bb4c0e4.png" alt="Mou icon"></p>
-<h2 id="2-代码实现">2.代码实现</h2><ul>
-<li>首先设置三个属性</li>
-</ul>
-<pre><code><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) CLLocationManager *manager;
-<span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">UIImageView</span> *myImage;
-<span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) CLLocationDirection currentHeading;    
-</code></pre><ul>
-<li>添加罗盘图片</li>
-</ul>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">_myImage = [[<span class="built_in">UIImageView</span> alloc] initWithImage:[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"compass.png"</span>]];</span><br><span class="line">    <span class="keyword">self</span><span class="variable">.view</span><span class="variable">.backgroundColor</span> = [<span class="built_in">UIColor</span> blackColor];</span><br><span class="line">    _myImage<span class="variable">.frame</span> = <span class="built_in">CGRectMake</span>(<span class="number">200</span>, <span class="number">200</span>, <span class="number">300</span>, <span class="number">300</span>);</span><br><span class="line">    _myImage<span class="variable">.center</span> = <span class="built_in">CGPointMake</span>(<span class="keyword">self</span><span class="variable">.view</span><span class="variable">.frame</span><span class="variable">.size</span><span class="variable">.width</span> / <span class="number">2</span>, <span class="keyword">self</span><span class="variable">.view</span><span class="variable">.frame</span><span class="variable">.size</span><span class="variable">.height</span> / <span class="number">2</span>);</span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.view</span> addSubview:_myImage];</span><br></pre></td></tr></table></figure>
-<ul>
-<li>初始化manager并添加代理</li>
-</ul>
-<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span>.manager= [[CLLocationManager alloc]init];</span><br><span class="line">    _manager.<span class="keyword">delegate</span> = <span class="keyword">self</span>;</span><br></pre></td></tr></table></figure>
-<p>别忘了遵循CLLocationManagerDelegate协议</p>
-<ul>
-<li>进行定位</li>
-</ul>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//4. 如果传感器可用的话</span></span><br><span class="line"><span class="keyword">if</span> ([CLLocationManager headingAvailable]) &#123;</span><br><span class="line">        <span class="comment">//设置精度</span></span><br><span class="line">        <span class="keyword">self</span><span class="variable">.mapManager</span><span class="variable">.desiredAccuracy</span> = kCLLocationAccuracyBest;</span><br><span class="line">        <span class="comment">//开始更新</span></span><br><span class="line">        [<span class="keyword">self</span><span class="variable">.mapManager</span> startUpdatingHeading];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>在代理方法里实现图片旋转</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">_currentHeading = ((newHeading.trueHeading &gt; <span class="number">0</span>) ?</span><br><span class="line">                                      newHeading.trueHeading : newHeading.magneticHeading);</span><br><span class="line">   [UIView animateWithDuration:<span class="number">0.3</span> animations:^&#123;</span><br><span class="line">       _myImage.transform = CGAffineTransformRotate(CGAffineTransformIdentity, (CGFloat) -<span class="number">1</span> * _currentHeading * M_PI / <span class="number">180.0</span>);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>现在指南针已经写完了,比较简单,大家可以试着优化一下.</p>
-</span>
+        <span itemprop="articleBody"><h3 id="一些storyboard中的用法">一些storyboard中的用法</h3><h4 id="1-空工程中通过创建storyboard文件加载页面">1.空工程中通过创建storyboard文件加载页面</h4><pre><code><span class="comment">// 获取Main.storyboard</span>
+<span class="built_in">UIStoryboard</span> *mainStory = [<span class="built_in">UIStoryboard</span> storyboardWithName:<span class="string">@"Main"</span> bundle:<span class="literal">nil</span>];
+<span class="comment">// 获取Main.storyboard中的第2个视图</span>
+SecondViewController *secondController = [mainStory instantiateViewControllerWithIdentifier:<span class="string">@"SecondStory"</span>];
+<span class="comment">// 设置窗体的根视图为Storyboard里的视图</span>
+<span class="keyword">self</span><span class="variable">.window</span><span class="variable">.rootViewController</span> = secondController
+</code></pre><h4 id="2-跳转到Storyboard中某个控制器">2.跳转到Storyboard中某个控制器</h4><pre><code><span class="comment">// 获取Main.storyboard</span>
+UIStoryboard *mainStory = [UIStoryboard <span class="string">storyboardWithName:</span>@<span class="string">"Main"</span> <span class="string">bundle:</span>nil];
+
+<span class="comment">// 获取Main.storyboard中的第2个视图</span>
+SecondViewController *secondController = [mainStory <span class="string">instantiateViewControllerWithIdentifier:</span>@<span class="string">"SecondStory"</span>];
+<span class="comment">// 跳转页面</span>
+
+[self <span class="string">presentViewController:</span>secondController <span class="string">animated:</span>YES <span class="string">completion:</span>nil];
+</code></pre></span>
       
     </div>
 
@@ -278,7 +256,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/iOS-指南针/" rel="tag">#iOS,指南针</a>
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
           
         </div>
       
@@ -287,16 +265,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/06/10/使用WebViewJavascriptBridge实现OC与JS交互/" rel="next" title="使用WebViewJavascriptBridge实现OC与JS交互">
-                <i class="fa fa-chevron-left"></i> 使用WebViewJavascriptBridge实现OC与JS交互
+              <a href="/2014/11/15/监听textfiled/" rel="next" title="监听textfiled字数">
+                <i class="fa fa-chevron-left"></i> 监听textfiled字数
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/10/30/如何制作想淘宝口令一样的链接/" rel="prev" title="关于iOS的剪贴板基本知识">
-                关于iOS的剪贴板基本知识 <i class="fa fa-chevron-right"></i>
+              <a href="/2014/12/05/圆角卡顿问题/" rel="prev" title="圆角卡顿问题解决">
+                圆角卡顿问题解决 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -411,7 +389,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-准备一张罗盘图片"><span class="nav-number">1.</span> <span class="nav-text">1.准备一张罗盘图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-代码实现"><span class="nav-number">2.</span> <span class="nav-text">2.代码实现</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一些storyboard中的用法"><span class="nav-number">1.</span> <span class="nav-text">一些storyboard中的用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-空工程中通过创建storyboard文件加载页面"><span class="nav-number">1.1.</span> <span class="nav-text">1.空工程中通过创建storyboard文件加载页面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-跳转到Storyboard中某个控制器"><span class="nav-number">1.2.</span> <span class="nav-text">2.跳转到Storyboard中某个控制器</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

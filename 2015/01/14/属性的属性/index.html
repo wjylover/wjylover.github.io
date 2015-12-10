@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,指南针," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -51,35 +51,17 @@
 
 
 
-<meta name="description" content="1.准备一张罗盘图片
-2.代码实现
-首先设置三个属性
-
-@property (nonatomic, strong) CLLocationManager *manager;
-@property (nonatomic, strong) UIImageView *myImage;
-@property (nonatomic, assign) CLLocationDirection currentHeadi">
+<meta name="description" content="属性关键字">
 <meta property="og:type" content="article">
-<meta property="og:title" content="指南针">
-<meta property="og:url" content="http://yoursite.com/2015/06/28/指南针/index.html">
+<meta property="og:title" content="属性的属性">
+<meta property="og:url" content="http://yoursite.com/2015/01/14/属性的属性/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1.准备一张罗盘图片
-2.代码实现
-首先设置三个属性
-
-@property (nonatomic, strong) CLLocationManager *manager;
-@property (nonatomic, strong) UIImageView *myImage;
-@property (nonatomic, assign) CLLocationDirection currentHeadi">
-<meta property="og:image" content="http://i12.tietuku.com/a805df144bb4c0e4.png">
-<meta property="og:updated_time" content="2015-12-10T07:33:05.000Z">
+<meta property="og:description" content="属性关键字">
+<meta property="og:image" content="http://i5.tietuku.com/d886f72d0f04079e.png">
+<meta property="og:updated_time" content="2015-12-10T07:45:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="指南针">
-<meta name="twitter:description" content="1.准备一张罗盘图片
-2.代码实现
-首先设置三个属性
-
-@property (nonatomic, strong) CLLocationManager *manager;
-@property (nonatomic, strong) UIImageView *myImage;
-@property (nonatomic, assign) CLLocationDirection currentHeadi">
+<meta name="twitter:title" content="属性的属性">
+<meta name="twitter:description" content="属性关键字">
 
 
 
@@ -91,7 +73,7 @@
   };
 </script>
 
-  <title> 指南针 | Hexo </title>
+  <title> 属性的属性 | Hexo </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -211,7 +193,7 @@
             
             
               
-                指南针
+                属性的属性
               
             
           </h1>
@@ -220,8 +202,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-06-28T21:37:28+08:00" content="2015-06-28">
-              2015-06-28
+            <time itemprop="dateCreated" datetime="2015-01-14T11:07:13+08:00" content="2015-01-14">
+              2015-01-14
             </time>
           </span>
 
@@ -244,59 +226,61 @@
       
 
       
-        <span itemprop="articleBody"><h2 id="1-准备一张罗盘图片">1.准备一张罗盘图片</h2><p><img src="http://i12.tietuku.com/a805df144bb4c0e4.png" alt="Mou icon"></p>
-<h2 id="2-代码实现">2.代码实现</h2><ul>
-<li>首先设置三个属性</li>
-</ul>
-<pre><code><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) CLLocationManager *manager;
-<span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">UIImageView</span> *myImage;
-<span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) CLLocationDirection currentHeading;    
-</code></pre><ul>
-<li>添加罗盘图片</li>
-</ul>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">_myImage = [[<span class="built_in">UIImageView</span> alloc] initWithImage:[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"compass.png"</span>]];</span><br><span class="line">    <span class="keyword">self</span><span class="variable">.view</span><span class="variable">.backgroundColor</span> = [<span class="built_in">UIColor</span> blackColor];</span><br><span class="line">    _myImage<span class="variable">.frame</span> = <span class="built_in">CGRectMake</span>(<span class="number">200</span>, <span class="number">200</span>, <span class="number">300</span>, <span class="number">300</span>);</span><br><span class="line">    _myImage<span class="variable">.center</span> = <span class="built_in">CGPointMake</span>(<span class="keyword">self</span><span class="variable">.view</span><span class="variable">.frame</span><span class="variable">.size</span><span class="variable">.width</span> / <span class="number">2</span>, <span class="keyword">self</span><span class="variable">.view</span><span class="variable">.frame</span><span class="variable">.size</span><span class="variable">.height</span> / <span class="number">2</span>);</span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.view</span> addSubview:_myImage];</span><br></pre></td></tr></table></figure>
-<ul>
-<li>初始化manager并添加代理</li>
-</ul>
-<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span>.manager= [[CLLocationManager alloc]init];</span><br><span class="line">    _manager.<span class="keyword">delegate</span> = <span class="keyword">self</span>;</span><br></pre></td></tr></table></figure>
-<p>别忘了遵循CLLocationManagerDelegate协议</p>
-<ul>
-<li>进行定位</li>
-</ul>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//4. 如果传感器可用的话</span></span><br><span class="line"><span class="keyword">if</span> ([CLLocationManager headingAvailable]) &#123;</span><br><span class="line">        <span class="comment">//设置精度</span></span><br><span class="line">        <span class="keyword">self</span><span class="variable">.mapManager</span><span class="variable">.desiredAccuracy</span> = kCLLocationAccuracyBest;</span><br><span class="line">        <span class="comment">//开始更新</span></span><br><span class="line">        [<span class="keyword">self</span><span class="variable">.mapManager</span> startUpdatingHeading];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>在代理方法里实现图片旋转</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">_currentHeading = ((newHeading.trueHeading &gt; <span class="number">0</span>) ?</span><br><span class="line">                                      newHeading.trueHeading : newHeading.magneticHeading);</span><br><span class="line">   [UIView animateWithDuration:<span class="number">0.3</span> animations:^&#123;</span><br><span class="line">       _myImage.transform = CGAffineTransformRotate(CGAffineTransformIdentity, (CGFloat) -<span class="number">1</span> * _currentHeading * M_PI / <span class="number">180.0</span>);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>现在指南针已经写完了,比较简单,大家可以试着优化一下.</p>
-</span>
+        <span itemprop="articleBody"><p>属性关键字 </p>
+ <a id="more"></a>
+<p> <img src="http://i5.tietuku.com/d886f72d0f04079e.png" alt=""></p>
+<p>补充</p>
+<p>关于nonatomic,如果我们能确定不需要多线程访问时，强烈推荐使用这个关键字，因为atomic对于性能的损失相对较大。<br>nonatomic 决定比编译器生成的setter、getter 方法是否是原子操作。<br>如果是类的delegate，推荐使用assign关键字，原因是避免了retain的死循环造成的对象无法真正的释放<br>strong 、weak 补充<br>ARC 下新加 strong、weak</p>
+<p>strong（默认）:ARC下和MRC下retain一样<br>weak（ARC下）：和(MRC下)assign类似，区别是当weak指向的内存释放掉后自动置为nil，防止野指针,并且weak 只对于对象而言。 对于ARC 下的基本数据类型仍旧使用 assign。<br>unsafe_unretained在ARC 、MRC 下都可以使用。</p>
+<p>unsafe_unretained声明一个弱引用，但不会自动置为nil，可能会出现野指针。 （最好不要使用）<br>关于OC 的拷贝补充<br>copy 和 mutableCopy 区别?<br>mutable 易变的</p>
+<p>copy就是复制了一个imutable的对象，而mutablecopy就是复制了一个mutable的对象<br>如果对一不可变对象复制，copy是指针复制（浅拷贝）,mutableCopy就是对象复制（深拷贝）。如果是对可变对象复制，都是深拷贝，但是copy返回的对象是不可变的。<br>你如何看待iOS中的拷贝？</p>
+<p>在iOS中我看到了三种拷贝方式：</p>
+<p>(2)浅拷贝Copy：浅拷贝就是确实拷贝出来一份和原来内容一样的新对象。但是对于对象自带的属性是伪拷贝，两个对象的属性指向同一个内存。 也就是只复制指向对象的指针，而不复制引用对象本身。 拷贝出来后引用计数加 1，两者的引用计数相同，以后任意一个进行操作引用计数也会改变。</p>
+<p>(3)深拷贝mutableCopy：深拷贝就是不仅仅拷贝出一份新对象，而且对象的属性也拷贝了一份。 也就是复制引用对象本身。 新拷贝的对象引用计数为1 ，之前的引用计数不加。 之后两者的操作互补干扰。<br>总的来说，如果在开发的过程中需要实现拷贝，那么需要接受NSCopying协议。实现copyWithZone:方法。浅拷贝、深拷贝的区别在于copyWithZone:方法的实现不同。</p>
+<p>举例理解：</p>
+<p>意思就是说我有个A对象复制一份后得到A_copy对象后，对于浅复制来说，A和A_copy指向的是同一份内存资源，复制的只不过是一个指针，对象本身资源还是只有一份，那如果我们对A_copy执行了修改操作，那么发现A引用的对象同样被修改，这其实违背了我们复制拷贝的思想。深复制就是内存中存在了，两份独立对象本身。<br>用网上的通俗的话讲就是：浅复制好比你和你影子，你完蛋，你的影子也完蛋，深复制好比你和你的克隆人，你完蛋，你的克隆人还活着。<br>父类实现深拷贝时，子类如何实现深拷贝 ？父类没有实现深拷贝时，子类如何实现深度拷贝？</p>
+<p>父类实现深拷贝之后，子类在重写的copyWithZone方法，先调用父类的copyWithZone方法，之后实现自己属性的拷贝。<br>如果父类没有实现深拷贝，子类除了需要对自己的属性进行拷贝，还要对父类的属性进行拷贝。<br>拷贝的setter 方法</p>
+<pre><code>-(void)<span class="built_in">setName</span>:(NSString *)<span class="built_in">str</span>
+{
+id t = [<span class="built_in">str</span> copy];
+[<span class="built_in">name</span> release];
+<span class="built_in">name</span> = t;
+}
+</code></pre><p>copyWithZone</p>
+<p>深拷贝<br>.h 文件遵循NSCopying 协议</p>
+<pre><code>- (<span class="keyword">id</span>)copyWithZone:(<span class="built_in">NSZone</span> *)zone
+{
+Student * stu = [[Student alloc]init];
+stu<span class="variable">.age</span> = <span class="keyword">self</span><span class="variable">.age</span>;
+stu<span class="variable">.name</span> = <span class="keyword">self</span><span class="variable">.name</span>;
+<span class="keyword">return</span> stu;
+}
+</code></pre><p>浅拷贝</p>
+<pre><code>- (<span class="keyword">id</span>)copyWithZone:(<span class="built_in">NSZone</span> *)zone
+{
+<span class="keyword">return</span> [<span class="keyword">self</span> retain];
+}
+</code></pre></span>
       
     </div>
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/iOS-指南针/" rel="tag">#iOS,指南针</a>
-          
-        </div>
       
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/06/10/使用WebViewJavascriptBridge实现OC与JS交互/" rel="next" title="使用WebViewJavascriptBridge实现OC与JS交互">
-                <i class="fa fa-chevron-left"></i> 使用WebViewJavascriptBridge实现OC与JS交互
+              <a href="/2014/12/05/圆角卡顿问题/" rel="next" title="圆角卡顿问题解决">
+                <i class="fa fa-chevron-left"></i> 圆角卡顿问题解决
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/10/30/如何制作想淘宝口令一样的链接/" rel="prev" title="关于iOS的剪贴板基本知识">
-                关于iOS的剪贴板基本知识 <i class="fa fa-chevron-right"></i>
+              <a href="/2015/01/20/iOS-延展-类目-代理协议/" rel="prev" title="iOS--延展,类目,代理协议">
+                iOS--延展,类目,代理协议 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -411,7 +395,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-准备一张罗盘图片"><span class="nav-number">1.</span> <span class="nav-text">1.准备一张罗盘图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-代码实现"><span class="nav-number">2.</span> <span class="nav-text">2.代码实现</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,指南针," />
+  <meta name="keywords" content="iOS," />
 
 
 
@@ -51,35 +51,16 @@
 
 
 
-<meta name="description" content="1.准备一张罗盘图片
-2.代码实现
-首先设置三个属性
-
-@property (nonatomic, strong) CLLocationManager *manager;
-@property (nonatomic, strong) UIImageView *myImage;
-@property (nonatomic, assign) CLLocationDirection currentHeadi">
+<meta name="description" content="当要在block中使用self时可以避免self的block块中持有self本身,造成循环持有__weak__typeof(self)weakSelf = self">
 <meta property="og:type" content="article">
-<meta property="og:title" content="指南针">
-<meta property="og:url" content="http://yoursite.com/2015/06/28/指南针/index.html">
+<meta property="og:title" content="block中的self">
+<meta property="og:url" content="http://yoursite.com/2014/10/17/block中的self/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1.准备一张罗盘图片
-2.代码实现
-首先设置三个属性
-
-@property (nonatomic, strong) CLLocationManager *manager;
-@property (nonatomic, strong) UIImageView *myImage;
-@property (nonatomic, assign) CLLocationDirection currentHeadi">
-<meta property="og:image" content="http://i12.tietuku.com/a805df144bb4c0e4.png">
-<meta property="og:updated_time" content="2015-12-10T07:33:05.000Z">
+<meta property="og:description" content="当要在block中使用self时可以避免self的block块中持有self本身,造成循环持有__weak__typeof(self)weakSelf = self">
+<meta property="og:updated_time" content="2015-12-05T08:19:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="指南针">
-<meta name="twitter:description" content="1.准备一张罗盘图片
-2.代码实现
-首先设置三个属性
-
-@property (nonatomic, strong) CLLocationManager *manager;
-@property (nonatomic, strong) UIImageView *myImage;
-@property (nonatomic, assign) CLLocationDirection currentHeadi">
+<meta name="twitter:title" content="block中的self">
+<meta name="twitter:description" content="当要在block中使用self时可以避免self的block块中持有self本身,造成循环持有__weak__typeof(self)weakSelf = self">
 
 
 
@@ -91,7 +72,7 @@
   };
 </script>
 
-  <title> 指南针 | Hexo </title>
+  <title> block中的self | Hexo </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -211,7 +192,7 @@
             
             
               
-                指南针
+                block中的self
               
             
           </h1>
@@ -220,8 +201,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-06-28T21:37:28+08:00" content="2015-06-28">
-              2015-06-28
+            <time itemprop="dateCreated" datetime="2014-10-17T16:16:52+08:00" content="2014-10-17">
+              2014-10-17
             </time>
           </span>
 
@@ -244,33 +225,8 @@
       
 
       
-        <span itemprop="articleBody"><h2 id="1-准备一张罗盘图片">1.准备一张罗盘图片</h2><p><img src="http://i12.tietuku.com/a805df144bb4c0e4.png" alt="Mou icon"></p>
-<h2 id="2-代码实现">2.代码实现</h2><ul>
-<li>首先设置三个属性</li>
-</ul>
-<pre><code><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) CLLocationManager *manager;
-<span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">UIImageView</span> *myImage;
-<span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) CLLocationDirection currentHeading;    
-</code></pre><ul>
-<li>添加罗盘图片</li>
-</ul>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">_myImage = [[<span class="built_in">UIImageView</span> alloc] initWithImage:[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"compass.png"</span>]];</span><br><span class="line">    <span class="keyword">self</span><span class="variable">.view</span><span class="variable">.backgroundColor</span> = [<span class="built_in">UIColor</span> blackColor];</span><br><span class="line">    _myImage<span class="variable">.frame</span> = <span class="built_in">CGRectMake</span>(<span class="number">200</span>, <span class="number">200</span>, <span class="number">300</span>, <span class="number">300</span>);</span><br><span class="line">    _myImage<span class="variable">.center</span> = <span class="built_in">CGPointMake</span>(<span class="keyword">self</span><span class="variable">.view</span><span class="variable">.frame</span><span class="variable">.size</span><span class="variable">.width</span> / <span class="number">2</span>, <span class="keyword">self</span><span class="variable">.view</span><span class="variable">.frame</span><span class="variable">.size</span><span class="variable">.height</span> / <span class="number">2</span>);</span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.view</span> addSubview:_myImage];</span><br></pre></td></tr></table></figure>
-<ul>
-<li>初始化manager并添加代理</li>
-</ul>
-<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span>.manager= [[CLLocationManager alloc]init];</span><br><span class="line">    _manager.<span class="keyword">delegate</span> = <span class="keyword">self</span>;</span><br></pre></td></tr></table></figure>
-<p>别忘了遵循CLLocationManagerDelegate协议</p>
-<ul>
-<li>进行定位</li>
-</ul>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//4. 如果传感器可用的话</span></span><br><span class="line"><span class="keyword">if</span> ([CLLocationManager headingAvailable]) &#123;</span><br><span class="line">        <span class="comment">//设置精度</span></span><br><span class="line">        <span class="keyword">self</span><span class="variable">.mapManager</span><span class="variable">.desiredAccuracy</span> = kCLLocationAccuracyBest;</span><br><span class="line">        <span class="comment">//开始更新</span></span><br><span class="line">        [<span class="keyword">self</span><span class="variable">.mapManager</span> startUpdatingHeading];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>在代理方法里实现图片旋转</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">_currentHeading = ((newHeading.trueHeading &gt; <span class="number">0</span>) ?</span><br><span class="line">                                      newHeading.trueHeading : newHeading.magneticHeading);</span><br><span class="line">   [UIView animateWithDuration:<span class="number">0.3</span> animations:^&#123;</span><br><span class="line">       _myImage.transform = CGAffineTransformRotate(CGAffineTransformIdentity, (CGFloat) -<span class="number">1</span> * _currentHeading * M_PI / <span class="number">180.0</span>);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>现在指南针已经写完了,比较简单,大家可以试着优化一下.</p>
-</span>
+        <span itemprop="articleBody"><h4 id="当要在block中使用self时">当要在block中使用self时</h4><h4 id="可以避免self的block块中持有self本身,造成循环持有">可以避免self的block块中持有self本身,造成循环持有</h4><pre><code>__weak__typeof(<span class="keyword">self</span>)weakSelf = <span class="keyword">self</span>
+</code></pre></span>
       
     </div>
 
@@ -278,7 +234,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/iOS-指南针/" rel="tag">#iOS,指南针</a>
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
           
         </div>
       
@@ -287,16 +243,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/06/10/使用WebViewJavascriptBridge实现OC与JS交互/" rel="next" title="使用WebViewJavascriptBridge实现OC与JS交互">
-                <i class="fa fa-chevron-left"></i> 使用WebViewJavascriptBridge实现OC与JS交互
+              <a href="/2014/10/15/block/" rel="next" title="关于block">
+                <i class="fa fa-chevron-left"></i> 关于block
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/10/30/如何制作想淘宝口令一样的链接/" rel="prev" title="关于iOS的剪贴板基本知识">
-                关于iOS的剪贴板基本知识 <i class="fa fa-chevron-right"></i>
+              <a href="/2014/10/22/stack overflow/" rel="prev" title="我已经不再依赖stack overflow">
+                我已经不再依赖stack overflow <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -411,7 +367,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-准备一张罗盘图片"><span class="nav-number">1.</span> <span class="nav-text">1.准备一张罗盘图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-代码实现"><span class="nav-number">2.</span> <span class="nav-text">2.代码实现</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#当要在block中使用self时"><span class="nav-number">1.</span> <span class="nav-text">当要在block中使用self时</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可以避免self的block块中持有self本身,造成循环持有"><span class="nav-number">2.</span> <span class="nav-text">可以避免self的block块中持有self本身,造成循环持有</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

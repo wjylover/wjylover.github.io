@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,指南针," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -51,35 +51,16 @@
 
 
 
-<meta name="description" content="1.准备一张罗盘图片
-2.代码实现
-首先设置三个属性
-
-@property (nonatomic, strong) CLLocationManager *manager;
-@property (nonatomic, strong) UIImageView *myImage;
-@property (nonatomic, assign) CLLocationDirection currentHeadi">
+<meta name="description" content="前言当下,很多APP里面都会有HTML5网页,我们除了简单的用WebView加载显示外，很多情况下，我们还需要和WebView进行交互,比如点击WebView上面的按钮调用OC端的函数实现具体操作。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="指南针">
-<meta property="og:url" content="http://yoursite.com/2015/06/28/指南针/index.html">
+<meta property="og:title" content="使用WebViewJavascriptBridge实现OC与JS交互">
+<meta property="og:url" content="http://yoursite.com/2015/06/10/使用WebViewJavascriptBridge实现OC与JS交互/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1.准备一张罗盘图片
-2.代码实现
-首先设置三个属性
-
-@property (nonatomic, strong) CLLocationManager *manager;
-@property (nonatomic, strong) UIImageView *myImage;
-@property (nonatomic, assign) CLLocationDirection currentHeadi">
-<meta property="og:image" content="http://i12.tietuku.com/a805df144bb4c0e4.png">
-<meta property="og:updated_time" content="2015-12-10T07:33:05.000Z">
+<meta property="og:description" content="前言当下,很多APP里面都会有HTML5网页,我们除了简单的用WebView加载显示外，很多情况下，我们还需要和WebView进行交互,比如点击WebView上面的按钮调用OC端的函数实现具体操作。">
+<meta property="og:updated_time" content="2015-12-10T07:45:56.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="指南针">
-<meta name="twitter:description" content="1.准备一张罗盘图片
-2.代码实现
-首先设置三个属性
-
-@property (nonatomic, strong) CLLocationManager *manager;
-@property (nonatomic, strong) UIImageView *myImage;
-@property (nonatomic, assign) CLLocationDirection currentHeadi">
+<meta name="twitter:title" content="使用WebViewJavascriptBridge实现OC与JS交互">
+<meta name="twitter:description" content="前言当下,很多APP里面都会有HTML5网页,我们除了简单的用WebView加载显示外，很多情况下，我们还需要和WebView进行交互,比如点击WebView上面的按钮调用OC端的函数实现具体操作。">
 
 
 
@@ -91,7 +72,7 @@
   };
 </script>
 
-  <title> 指南针 | Hexo </title>
+  <title> 使用WebViewJavascriptBridge实现OC与JS交互 | Hexo </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -211,7 +192,7 @@
             
             
               
-                指南针
+                使用WebViewJavascriptBridge实现OC与JS交互
               
             
           </h1>
@@ -220,8 +201,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-06-28T21:37:28+08:00" content="2015-06-28">
-              2015-06-28
+            <time itemprop="dateCreated" datetime="2015-06-10T10:22:27+08:00" content="2015-06-10">
+              2015-06-10
             </time>
           </span>
 
@@ -244,59 +225,111 @@
       
 
       
-        <span itemprop="articleBody"><h2 id="1-准备一张罗盘图片">1.准备一张罗盘图片</h2><p><img src="http://i12.tietuku.com/a805df144bb4c0e4.png" alt="Mou icon"></p>
-<h2 id="2-代码实现">2.代码实现</h2><ul>
-<li>首先设置三个属性</li>
-</ul>
-<pre><code><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) CLLocationManager *manager;
-<span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">UIImageView</span> *myImage;
-<span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) CLLocationDirection currentHeading;    
-</code></pre><ul>
-<li>添加罗盘图片</li>
-</ul>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">_myImage = [[<span class="built_in">UIImageView</span> alloc] initWithImage:[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"compass.png"</span>]];</span><br><span class="line">    <span class="keyword">self</span><span class="variable">.view</span><span class="variable">.backgroundColor</span> = [<span class="built_in">UIColor</span> blackColor];</span><br><span class="line">    _myImage<span class="variable">.frame</span> = <span class="built_in">CGRectMake</span>(<span class="number">200</span>, <span class="number">200</span>, <span class="number">300</span>, <span class="number">300</span>);</span><br><span class="line">    _myImage<span class="variable">.center</span> = <span class="built_in">CGPointMake</span>(<span class="keyword">self</span><span class="variable">.view</span><span class="variable">.frame</span><span class="variable">.size</span><span class="variable">.width</span> / <span class="number">2</span>, <span class="keyword">self</span><span class="variable">.view</span><span class="variable">.frame</span><span class="variable">.size</span><span class="variable">.height</span> / <span class="number">2</span>);</span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.view</span> addSubview:_myImage];</span><br></pre></td></tr></table></figure>
-<ul>
-<li>初始化manager并添加代理</li>
-</ul>
-<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span>.manager= [[CLLocationManager alloc]init];</span><br><span class="line">    _manager.<span class="keyword">delegate</span> = <span class="keyword">self</span>;</span><br></pre></td></tr></table></figure>
-<p>别忘了遵循CLLocationManagerDelegate协议</p>
-<ul>
-<li>进行定位</li>
-</ul>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//4. 如果传感器可用的话</span></span><br><span class="line"><span class="keyword">if</span> ([CLLocationManager headingAvailable]) &#123;</span><br><span class="line">        <span class="comment">//设置精度</span></span><br><span class="line">        <span class="keyword">self</span><span class="variable">.mapManager</span><span class="variable">.desiredAccuracy</span> = kCLLocationAccuracyBest;</span><br><span class="line">        <span class="comment">//开始更新</span></span><br><span class="line">        [<span class="keyword">self</span><span class="variable">.mapManager</span> startUpdatingHeading];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>在代理方法里实现图片旋转</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">_currentHeading = ((newHeading.trueHeading &gt; <span class="number">0</span>) ?</span><br><span class="line">                                      newHeading.trueHeading : newHeading.magneticHeading);</span><br><span class="line">   [UIView animateWithDuration:<span class="number">0.3</span> animations:^&#123;</span><br><span class="line">       _myImage.transform = CGAffineTransformRotate(CGAffineTransformIdentity, (CGFloat) -<span class="number">1</span> * _currentHeading * M_PI / <span class="number">180.0</span>);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>现在指南针已经写完了,比较简单,大家可以试着优化一下.</p>
+        <span itemprop="articleBody"><h4 id="前言">前言</h4><p>当下,很多APP里面都会有HTML5网页,我们除了简单的用WebView加载显示外，很多情况下，我们还需要和WebView进行交互,比如点击WebView上面的按钮调用OC端的函数实现具体操作。</p>
+<a id="more"></a>
+<p>因此今天为大家介绍一个优秀的开源小项目,就是我们今天的主角–<code>WebViewJavascriptBridge</code>。它主要帮助我们优雅的实现OC与JS的交互,非常方便简洁。</p>
+<p>当然,有很多优秀的开发者写过WebViewJavascriptBridge的使用包括实现原理,首先表示感激和敬意。但是作为一个初学者或者一个急于实现功能的人来说,大部分时候我们更希望一个直奔主题的文章。所以,本文的核心就是WebViewJavascriptBridge在实际开发中的使用。<br>使用步骤<br>去Github上下载<code>WebJavaScriptBridge</code><br>解压缩包,将<code>WebViewJavascriptBridge</code>文件夹拖到你的工程中</p>
+<p>1.png<br>在需要使用<code>WebViewJavascriptBridge</code>的类文件中引入头文件<code>WebViewJavascriptBridge.h</code><br>加载UIWebView,遵守<code>&lt;UIWebViewDelegate&gt;</code>协议<br>具体使用<br>创建并初始化WebJavaScriptBridge实例</p>
+<pre><code>   <span class="preprocessor">#import <span class="title">"ExampleUIWebViewController.h"</span></span>
+   <span class="preprocessor">#import <span class="title">"WebViewJavascriptBridge.h"</span></span>
+
+  <span class="class"><span class="keyword">@interface</span> <span class="title">ExampleUIWebViewController</span> ()</span>
+  <span class="comment">//声明`WebViewJavascriptBridge`对象为属性</span>
+   <span class="keyword">@property</span> WebViewJavascriptBridge* bridge;
+
+  <span class="keyword">@end</span>
+
+  - (<span class="keyword">void</span>)viewWillAppear:(<span class="built_in">BOOL</span>)animated {
+
+   <span class="comment">//用UIWebView加载web</span>
+    <span class="built_in">UIWebView</span>* webView = [[<span class="built_in">UIWebView</span> alloc] initWithFrame:<span class="keyword">self</span><span class="variable">.view</span><span class="variable">.bounds</span>];
+
+ <span class="comment">//设置能够进行桥接 </span>
+    [WebViewJavascriptBridge enableLogging];
+ <span class="comment">// 初始化*WebViewJavascriptBridge*实例,设置代理,进行桥接</span>
+   _bridge = [WebViewJavascriptBridge bridgeForWebView:webView webViewDelegate:<span class="keyword">self</span> handler:^(<span class="keyword">id</span>         data, WVJBResponseCallback responseCallback) {
+
+<span class="built_in">NSLog</span>(<span class="string">@"ObjC received message from JS: %@"</span>, data);
+     responseCallback(<span class="string">@"Response for message from ObjC"</span>);
+     }];
+
+}
+</code></pre><h4 id="JS调用OC">JS调用OC</h4><p>什么是JS调用OC?</p>
+<p>举个例子来说就是在网页中有一个登录按钮,点击登录按钮后,具体的登录功能是由OC端实现的,即登录功能实现需要我们在工程里有一个类似loginMethod的函数去具体操作。<br>工作流程</p>
+<p>站在实际开发的角度来解释,就是假如现在有一个网页,在网页中有个登录按钮需要通过JS调OC的方式实现。那么我们首先需要跟负责网页编码的人员(一般是后台)商定出一个方法名称,也就是给这个登录按钮点击事件取个名字,例如叫loginCallBack。然后我们需要在代码里注册这个事件并负责它的具体实现。当用户点击这个登录按钮的时候,后台就会通知给这个事件的注册者去执行,有点像block的执行顺序。<br>代码实现</p>
+<p>假如我们现在商定了一个事件名称为loginFunc,我们来看一下代码实现。</p>
+<pre><code> /<span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span>
+ /<span class="comment">@param registerHandler 要注册的事件名称(这里我们为loginFunc)</span>
+ /<span class="comment">@param handel 回调block函数 当后台触发这个事件的时候会执行block里面的代码</span>
+<span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span>/
+[_bridge registerHandler:<span class="comment">@"loginFunc" handler:^(id data, WVJBResponseCallback responseCallback) {</span>
+// data 后台传过来的参数,例如用户名、密码等
+
+  NSLog(<span class="comment">@"testObjcCallback called: %@", data);</span>
+
+//具体的登录事件的实现,这里的login代表实现登录功能的一个OC函数。
+           [self login];   
+
+// responseCallback 给后台的回复    
+
+   responseCallback(<span class="comment">@"Response from testObjcCallback");</span>
+ }];
+</code></pre><h4 id="OC调用JS">OC调用JS</h4><p>什么是OC调用JS</p>
+<p>如果你理解了JS调用OC,那么OC调用JS就应该差不多懂了。同样举个例子,我们的原生APP上有个输入框,我们输入完成后,让它显示在网页上面的用户名处。这样,我们就是OC要实现的一个事件让网页去真正实现了,也就是OC调用JS。<br>OC调用JS</p>
+<p>和JS调用OC的流程大致一样,还是需要和网页编写人员商定出一个事件名,然后在网页里面先把注册这样一个事件并把实现体写好,等到我们OC去触发这个事件(比如点击按钮)就会去网页里面找到这个事件的实现体并执行。<br>代码实现</p>
+<p>假如我们现在商定了一个注册事件,事件名称为registerFunc,我<br>们来代码实现一下    </p>
+<pre><code>   <span class="comment">//不需要传参数,不需要后台返回执行结果</span>
+  [_bridge <span class="string">callHandler:</span>@<span class="string">"registerFunc"</span>];
+
+<span class="comment">//需要传参数,不需要从后台返回执行结果</span>
+  <span class="comment">/***
+   <span class="doctag">@param</span> callHandler 商定的事件名称,用来调用网页里面相应的事件实现
+   <span class="doctag">@param</span> data id类型,相当于我们函数中的参数,向网页传递函数执行需要的参数
+ ***/</span>
+
+ [_bridge <span class="string">callHandler:</span>@<span class="string">"registerFunc"</span> <span class="string">data:</span>@<span class="string">"name"</span>];
+
+<span class="comment">//需要传参数,需要从后台返回执行结果</span>
+
+ [_bridge <span class="string">callHandler:</span>@<span class="string">"registerFunc"</span> <span class="string">data:</span>@<span class="string">"name"</span> <span class="string">responseCallback:</span>^(id responseData) {
+
+    NSLog(@<span class="string">"后台执行完成后返回的数据"</span>);
+
+  }];
+</code></pre><p>发送消息</p>
+<h4 id="概述">概述</h4><p>我们可以单纯地向JS发送数据,比如我们可以在网页加载完成后向网页发送一条加载完成的消息,或者传一个标题。<br>代码实现</p>
+<pre><code><span class="comment">//不需要后台返回执行结果或数据</span>
+[_bridge <span class="string">send:</span>@<span class="string">"红色"</span>];
+
+<span class="comment">//需要后台返回执行结果或数据</span>
+  [_bridge <span class="string">send:</span>@<span class="string">"红色"</span> <span class="string">responseCallback:</span>^(id responseData) {
+
+  NSLog(@<span class="string">"后台执行完成后返回的数据 %@"</span>, responseData);
+
+ }];
+</code></pre><h4 id="注意点">注意点</h4><p>一定要注意和网页端商定的方法名必须要保证OC代码 里和网页编码里统一。在调用之前,必须要先注册事件,写好实现体。<br>总结<br>本文只是简单地介绍了WebViewJavascriptBridge在实际开发中常用的几个方法,还有一些方法没有意义详讲,希望大家在掌握了这几个方法的使用后也去研究一下里面的其他方法。另外,本文重点是让ios工程师能快速使用,一些原理的东西还有JS方面的编码都省略了,可能文中有些地方理解不当或者不够深入,后期会再完善修改.最后,希望大家多提宝贵意见。</p>
+<p>大家可去gitHub下载demo查看源码。</p>
 </span>
       
     </div>
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/iOS-指南针/" rel="tag">#iOS,指南针</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/06/10/使用WebViewJavascriptBridge实现OC与JS交互/" rel="next" title="使用WebViewJavascriptBridge实现OC与JS交互">
-                <i class="fa fa-chevron-left"></i> 使用WebViewJavascriptBridge实现OC与JS交互
+              <a href="/2015/05/03/遍历/" rel="next" title="同时遍历字典key，value">
+                <i class="fa fa-chevron-left"></i> 同时遍历字典key，value
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/10/30/如何制作想淘宝口令一样的链接/" rel="prev" title="关于iOS的剪贴板基本知识">
-                关于iOS的剪贴板基本知识 <i class="fa fa-chevron-right"></i>
+              <a href="/2015/06/28/指南针/" rel="prev" title="指南针">
+                指南针 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -411,7 +444,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-准备一张罗盘图片"><span class="nav-number">1.</span> <span class="nav-text">1.准备一张罗盘图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-代码实现"><span class="nav-number">2.</span> <span class="nav-text">2.代码实现</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JS调用OC"><span class="nav-number">2.</span> <span class="nav-text">JS调用OC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OC调用JS"><span class="nav-number">3.</span> <span class="nav-text">OC调用JS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#概述"><span class="nav-number">4.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注意点"><span class="nav-number">5.</span> <span class="nav-text">注意点</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

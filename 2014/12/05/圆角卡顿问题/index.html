@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,指南针," />
+  <meta name="keywords" content="iOS," />
 
 
 
@@ -51,35 +51,31 @@
 
 
 
-<meta name="description" content="1.准备一张罗盘图片
-2.代码实现
-首先设置三个属性
+<meta name="description" content="使用圆角效果时为什么会出现卡顿效果,如何解决这个问题?// 不要在滚动视图使用cornerRadius或者mask 
+// 添加
+self.layer.shouldRasterize = YES; 
+                                 self.layer.rasterizationScale = [UIScreen     mainScreen].scale;
 
-@property (nonatomic, strong) CLLocationManager *manager;
-@property (nonatomic, strong) UIImageView *myImage;
-@property (nonatomic, assign) CLLocationDirection currentHeadi">
+采">
 <meta property="og:type" content="article">
-<meta property="og:title" content="指南针">
-<meta property="og:url" content="http://yoursite.com/2015/06/28/指南针/index.html">
+<meta property="og:title" content="圆角卡顿问题解决">
+<meta property="og:url" content="http://yoursite.com/2014/12/05/圆角卡顿问题/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1.准备一张罗盘图片
-2.代码实现
-首先设置三个属性
+<meta property="og:description" content="使用圆角效果时为什么会出现卡顿效果,如何解决这个问题?// 不要在滚动视图使用cornerRadius或者mask 
+// 添加
+self.layer.shouldRasterize = YES; 
+                                 self.layer.rasterizationScale = [UIScreen     mainScreen].scale;
 
-@property (nonatomic, strong) CLLocationManager *manager;
-@property (nonatomic, strong) UIImageView *myImage;
-@property (nonatomic, assign) CLLocationDirection currentHeadi">
-<meta property="og:image" content="http://i12.tietuku.com/a805df144bb4c0e4.png">
-<meta property="og:updated_time" content="2015-12-10T07:33:05.000Z">
+采">
+<meta property="og:updated_time" content="2015-12-05T07:40:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="指南针">
-<meta name="twitter:description" content="1.准备一张罗盘图片
-2.代码实现
-首先设置三个属性
+<meta name="twitter:title" content="圆角卡顿问题解决">
+<meta name="twitter:description" content="使用圆角效果时为什么会出现卡顿效果,如何解决这个问题?// 不要在滚动视图使用cornerRadius或者mask 
+// 添加
+self.layer.shouldRasterize = YES; 
+                                 self.layer.rasterizationScale = [UIScreen     mainScreen].scale;
 
-@property (nonatomic, strong) CLLocationManager *manager;
-@property (nonatomic, strong) UIImageView *myImage;
-@property (nonatomic, assign) CLLocationDirection currentHeadi">
+采">
 
 
 
@@ -91,7 +87,7 @@
   };
 </script>
 
-  <title> 指南针 | Hexo </title>
+  <title> 圆角卡顿问题解决 | Hexo </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -211,7 +207,7 @@
             
             
               
-                指南针
+                圆角卡顿问题解决
               
             
           </h1>
@@ -220,8 +216,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-06-28T21:37:28+08:00" content="2015-06-28">
-              2015-06-28
+            <time itemprop="dateCreated" datetime="2014-12-05T10:35:18+08:00" content="2014-12-05">
+              2014-12-05
             </time>
           </span>
 
@@ -244,33 +240,13 @@
       
 
       
-        <span itemprop="articleBody"><h2 id="1-准备一张罗盘图片">1.准备一张罗盘图片</h2><p><img src="http://i12.tietuku.com/a805df144bb4c0e4.png" alt="Mou icon"></p>
-<h2 id="2-代码实现">2.代码实现</h2><ul>
-<li>首先设置三个属性</li>
-</ul>
-<pre><code><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) CLLocationManager *manager;
-<span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">UIImageView</span> *myImage;
-<span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) CLLocationDirection currentHeading;    
-</code></pre><ul>
-<li>添加罗盘图片</li>
-</ul>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">_myImage = [[<span class="built_in">UIImageView</span> alloc] initWithImage:[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"compass.png"</span>]];</span><br><span class="line">    <span class="keyword">self</span><span class="variable">.view</span><span class="variable">.backgroundColor</span> = [<span class="built_in">UIColor</span> blackColor];</span><br><span class="line">    _myImage<span class="variable">.frame</span> = <span class="built_in">CGRectMake</span>(<span class="number">200</span>, <span class="number">200</span>, <span class="number">300</span>, <span class="number">300</span>);</span><br><span class="line">    _myImage<span class="variable">.center</span> = <span class="built_in">CGPointMake</span>(<span class="keyword">self</span><span class="variable">.view</span><span class="variable">.frame</span><span class="variable">.size</span><span class="variable">.width</span> / <span class="number">2</span>, <span class="keyword">self</span><span class="variable">.view</span><span class="variable">.frame</span><span class="variable">.size</span><span class="variable">.height</span> / <span class="number">2</span>);</span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.view</span> addSubview:_myImage];</span><br></pre></td></tr></table></figure>
-<ul>
-<li>初始化manager并添加代理</li>
-</ul>
-<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span>.manager= [[CLLocationManager alloc]init];</span><br><span class="line">    _manager.<span class="keyword">delegate</span> = <span class="keyword">self</span>;</span><br></pre></td></tr></table></figure>
-<p>别忘了遵循CLLocationManagerDelegate协议</p>
-<ul>
-<li>进行定位</li>
-</ul>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//4. 如果传感器可用的话</span></span><br><span class="line"><span class="keyword">if</span> ([CLLocationManager headingAvailable]) &#123;</span><br><span class="line">        <span class="comment">//设置精度</span></span><br><span class="line">        <span class="keyword">self</span><span class="variable">.mapManager</span><span class="variable">.desiredAccuracy</span> = kCLLocationAccuracyBest;</span><br><span class="line">        <span class="comment">//开始更新</span></span><br><span class="line">        [<span class="keyword">self</span><span class="variable">.mapManager</span> startUpdatingHeading];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>在代理方法里实现图片旋转</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">_currentHeading = ((newHeading.trueHeading &gt; <span class="number">0</span>) ?</span><br><span class="line">                                      newHeading.trueHeading : newHeading.magneticHeading);</span><br><span class="line">   [UIView animateWithDuration:<span class="number">0.3</span> animations:^&#123;</span><br><span class="line">       _myImage.transform = CGAffineTransformRotate(CGAffineTransformIdentity, (CGFloat) -<span class="number">1</span> * _currentHeading * M_PI / <span class="number">180.0</span>);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>现在指南针已经写完了,比较简单,大家可以试着优化一下.</p>
-</span>
+        <span itemprop="articleBody"><h4 id="使用圆角效果时为什么会出现卡顿效果,如何解决这个问题?">使用圆角效果时为什么会出现卡顿效果,如何解决这个问题?</h4><pre><code><span class="comment">// 不要在滚动视图使用cornerRadius或者mask </span>
+<span class="comment">// 添加</span>
+<span class="keyword">self</span><span class="variable">.layer</span><span class="variable">.shouldRasterize</span> = <span class="literal">YES</span>; 
+                                 <span class="keyword">self</span><span class="variable">.layer</span><span class="variable">.rasterizationScale</span> = [<span class="built_in">UIScreen</span>     mainScreen]<span class="variable">.scale</span>;
+
+采取预先生成圆角图片，并缓存起来这个方法才是比较好的手段。预处理圆角图片可以在后台处理，处理完毕后缓存起来，再在主线程显示，这就避免了不必要的离屏渲染了。
+</code></pre></span>
       
     </div>
 
@@ -278,7 +254,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/iOS-指南针/" rel="tag">#iOS,指南针</a>
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
           
         </div>
       
@@ -287,16 +263,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/06/10/使用WebViewJavascriptBridge实现OC与JS交互/" rel="next" title="使用WebViewJavascriptBridge实现OC与JS交互">
-                <i class="fa fa-chevron-left"></i> 使用WebViewJavascriptBridge实现OC与JS交互
+              <a href="/2014/11/23/storyboard/" rel="next" title="storyboard中的控制器">
+                <i class="fa fa-chevron-left"></i> storyboard中的控制器
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/10/30/如何制作想淘宝口令一样的链接/" rel="prev" title="关于iOS的剪贴板基本知识">
-                关于iOS的剪贴板基本知识 <i class="fa fa-chevron-right"></i>
+              <a href="/2015/01/14/属性的属性/" rel="prev" title="属性的属性">
+                属性的属性 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -411,7 +387,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-准备一张罗盘图片"><span class="nav-number">1.</span> <span class="nav-text">1.准备一张罗盘图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-代码实现"><span class="nav-number">2.</span> <span class="nav-text">2.代码实现</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用圆角效果时为什么会出现卡顿效果,如何解决这个问题?"><span class="nav-number">1.</span> <span class="nav-text">使用圆角效果时为什么会出现卡顿效果,如何解决这个问题?</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

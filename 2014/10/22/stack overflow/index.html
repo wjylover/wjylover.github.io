@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,指南针," />
+  <meta name="keywords" content="iOS," />
 
 
 
@@ -51,35 +51,19 @@
 
 
 
-<meta name="description" content="1.准备一张罗盘图片
-2.代码实现
-首先设置三个属性
-
-@property (nonatomic, strong) CLLocationManager *manager;
-@property (nonatomic, strong) UIImageView *myImage;
-@property (nonatomic, assign) CLLocationDirection currentHeadi">
+<meta name="description" content="喜欢这篇文章
+我猜前段时间StackOverflow宕机了。宕机持续了约一小时，但是如果你翻翻社交网站上的相关帖子，你可能会相信在StackOverflow宕机的这一小时里，整个编程世界都停止运转了。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="指南针">
-<meta property="og:url" content="http://yoursite.com/2015/06/28/指南针/index.html">
+<meta property="og:title" content="我已经不再依赖stack overflow">
+<meta property="og:url" content="http://yoursite.com/2014/10/22/stack overflow/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1.准备一张罗盘图片
-2.代码实现
-首先设置三个属性
-
-@property (nonatomic, strong) CLLocationManager *manager;
-@property (nonatomic, strong) UIImageView *myImage;
-@property (nonatomic, assign) CLLocationDirection currentHeadi">
-<meta property="og:image" content="http://i12.tietuku.com/a805df144bb4c0e4.png">
-<meta property="og:updated_time" content="2015-12-10T07:33:05.000Z">
+<meta property="og:description" content="喜欢这篇文章
+我猜前段时间StackOverflow宕机了。宕机持续了约一小时，但是如果你翻翻社交网站上的相关帖子，你可能会相信在StackOverflow宕机的这一小时里，整个编程世界都停止运转了。">
+<meta property="og:updated_time" content="2015-11-28T08:39:02.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="指南针">
-<meta name="twitter:description" content="1.准备一张罗盘图片
-2.代码实现
-首先设置三个属性
-
-@property (nonatomic, strong) CLLocationManager *manager;
-@property (nonatomic, strong) UIImageView *myImage;
-@property (nonatomic, assign) CLLocationDirection currentHeadi">
+<meta name="twitter:title" content="我已经不再依赖stack overflow">
+<meta name="twitter:description" content="喜欢这篇文章
+我猜前段时间StackOverflow宕机了。宕机持续了约一小时，但是如果你翻翻社交网站上的相关帖子，你可能会相信在StackOverflow宕机的这一小时里，整个编程世界都停止运转了。">
 
 
 
@@ -91,7 +75,7 @@
   };
 </script>
 
-  <title> 指南针 | Hexo </title>
+  <title> 我已经不再依赖stack overflow | Hexo </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -211,7 +195,7 @@
             
             
               
-                指南针
+                我已经不再依赖stack overflow
               
             
           </h1>
@@ -220,8 +204,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-06-28T21:37:28+08:00" content="2015-06-28">
-              2015-06-28
+            <time itemprop="dateCreated" datetime="2014-10-22T20:06:04+08:00" content="2014-10-22">
+              2014-10-22
             </time>
           </span>
 
@@ -244,32 +228,17 @@
       
 
       
-        <span itemprop="articleBody"><h2 id="1-准备一张罗盘图片">1.准备一张罗盘图片</h2><p><img src="http://i12.tietuku.com/a805df144bb4c0e4.png" alt="Mou icon"></p>
-<h2 id="2-代码实现">2.代码实现</h2><ul>
-<li>首先设置三个属性</li>
-</ul>
-<pre><code><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) CLLocationManager *manager;
-<span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">UIImageView</span> *myImage;
-<span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) CLLocationDirection currentHeading;    
-</code></pre><ul>
-<li>添加罗盘图片</li>
-</ul>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">_myImage = [[<span class="built_in">UIImageView</span> alloc] initWithImage:[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"compass.png"</span>]];</span><br><span class="line">    <span class="keyword">self</span><span class="variable">.view</span><span class="variable">.backgroundColor</span> = [<span class="built_in">UIColor</span> blackColor];</span><br><span class="line">    _myImage<span class="variable">.frame</span> = <span class="built_in">CGRectMake</span>(<span class="number">200</span>, <span class="number">200</span>, <span class="number">300</span>, <span class="number">300</span>);</span><br><span class="line">    _myImage<span class="variable">.center</span> = <span class="built_in">CGPointMake</span>(<span class="keyword">self</span><span class="variable">.view</span><span class="variable">.frame</span><span class="variable">.size</span><span class="variable">.width</span> / <span class="number">2</span>, <span class="keyword">self</span><span class="variable">.view</span><span class="variable">.frame</span><span class="variable">.size</span><span class="variable">.height</span> / <span class="number">2</span>);</span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.view</span> addSubview:_myImage];</span><br></pre></td></tr></table></figure>
-<ul>
-<li>初始化manager并添加代理</li>
-</ul>
-<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span>.manager= [[CLLocationManager alloc]init];</span><br><span class="line">    _manager.<span class="keyword">delegate</span> = <span class="keyword">self</span>;</span><br></pre></td></tr></table></figure>
-<p>别忘了遵循CLLocationManagerDelegate协议</p>
-<ul>
-<li>进行定位</li>
-</ul>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//4. 如果传感器可用的话</span></span><br><span class="line"><span class="keyword">if</span> ([CLLocationManager headingAvailable]) &#123;</span><br><span class="line">        <span class="comment">//设置精度</span></span><br><span class="line">        <span class="keyword">self</span><span class="variable">.mapManager</span><span class="variable">.desiredAccuracy</span> = kCLLocationAccuracyBest;</span><br><span class="line">        <span class="comment">//开始更新</span></span><br><span class="line">        [<span class="keyword">self</span><span class="variable">.mapManager</span> startUpdatingHeading];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>在代理方法里实现图片旋转</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">_currentHeading = ((newHeading.trueHeading &gt; <span class="number">0</span>) ?</span><br><span class="line">                                      newHeading.trueHeading : newHeading.magneticHeading);</span><br><span class="line">   [UIView animateWithDuration:<span class="number">0.3</span> animations:^&#123;</span><br><span class="line">       _myImage.transform = CGAffineTransformRotate(CGAffineTransformIdentity, (CGFloat) -<span class="number">1</span> * _currentHeading * M_PI / <span class="number">180.0</span>);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>现在指南针已经写完了,比较简单,大家可以试着优化一下.</p>
+        <span itemprop="articleBody"><h2 id="喜欢这篇文章">喜欢这篇文章</h2><hr>
+<p>我猜前段时间StackOverflow宕机了。宕机持续了约一小时，但是如果你翻翻社交网站上的相关帖子，你可能会相信在StackOverflow宕机的这一小时里，整个编程世界都停止运转了。</p>
+<a id="more"></a>
+<p>当然大部分帖子是开玩笑的啦，但是这使我意识到了一些事情。我刚刚写了一天的代码，几小时花在开放的项目中，几小时是我个人的项目。我在与那堆我根本不熟悉的技术诸如LLVM、C++艰苦搏斗了一整天。这些东西对于之前没碰过的人来说非常困难。然而这一整天里我压根没有用StackOverflow。</p>
+<p>事实上，我之前从来没有到 StackOverflow上面去找任何关于LLVM、 C++或是 playn framework（一个不出名的游戏框架，有关它的大部分问答信息都在StackOverflow上面）的答案。即使是我已经为此付出了几个月的艰辛，我也从不去Stackoverflow上当伸手党。当然了，其实我可能会隔几个月才会偶尔看一次 StackOverflow，通常也是从我正在看的论文或是代码上面的链接点击过去的。</p>
+<p>这并不是说我从来没用过 StackOverflow。我记得我刚开始从事编程行业的头几年里，那是天天都泡在上面。从简单的用Python遍历两个列表到困难的定制pasteScript生成的setup.py，各种问题我都试着问过了。但是渐渐的，我不再这么做了。</p>
+<p>当一个库的行为不正常时，我开始跟进到代码里面去试图了解真正发生了什么。我会去读文档，而不是去StackOverflow问一个API是否存在或是一个库是否有某个功能。我会去找到测试方法并且在我的电脑上进行实际的测试，而不是去StackOverflow问我的方案是否正确。</p>
+<p>我发现通过自己研究而不是直接去查找StackOverflow，我从我的错误中学到了更多。我不仅仅是解决了我的问题，我还学到了更多的细节。我已经用我的洞察力解决了好几个类似的问题，若是之前，我肯定要到StackOverflow找答案。</p>
+<p>现在，我并不是说StackOverflow是坏东西。它是一个能从资深开发者那里学到东西的好地方。当你着实不知道去哪能找到相关的信息时，能有这样一个提供了清晰而深刻答案的资源库是非常令人惊喜的。但有时候当我知道可以去哪找到答案时我就会选择自己去找。因为我知道寻找答案的过程会带给我对于问题、答案以及技术更深刻的理解，并且通常这样能够加强我的编程功力。</p>
+<p>我百分之百肯定还会再去StackOverflow，但是很高兴自己能认识到不要再依赖它，即使没有StackOverflow，我的编程生涯也不会停滞.</p>
+<p>我想我以后也不会依赖任何人..</p>
 </span>
       
     </div>
@@ -278,7 +247,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/iOS-指南针/" rel="tag">#iOS,指南针</a>
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
           
         </div>
       
@@ -287,16 +256,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/06/10/使用WebViewJavascriptBridge实现OC与JS交互/" rel="next" title="使用WebViewJavascriptBridge实现OC与JS交互">
-                <i class="fa fa-chevron-left"></i> 使用WebViewJavascriptBridge实现OC与JS交互
+              <a href="/2014/10/17/block中的self/" rel="next" title="block中的self">
+                <i class="fa fa-chevron-left"></i> block中的self
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/10/30/如何制作想淘宝口令一样的链接/" rel="prev" title="关于iOS的剪贴板基本知识">
-                关于iOS的剪贴板基本知识 <i class="fa fa-chevron-right"></i>
+              <a href="/2014/11/02/单例/" rel="prev" title="单例">
+                单例 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -411,7 +380,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-准备一张罗盘图片"><span class="nav-number">1.</span> <span class="nav-text">1.准备一张罗盘图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-代码实现"><span class="nav-number">2.</span> <span class="nav-text">2.代码实现</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#喜欢这篇文章"><span class="nav-number">1.</span> <span class="nav-text">喜欢这篇文章</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

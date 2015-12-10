@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,指南针," />
+  <meta name="keywords" content="Objective-C," />
 
 
 
@@ -51,35 +51,25 @@
 
 
 
-<meta name="description" content="1.准备一张罗盘图片
-2.代码实现
-首先设置三个属性
-
-@property (nonatomic, strong) CLLocationManager *manager;
-@property (nonatomic, strong) UIImageView *myImage;
-@property (nonatomic, assign) CLLocationDirection currentHeadi">
+<meta name="description" content="一些关于block的基础注意：使用block传值的注意事项
+// MRC
+// 1.block声明为属性的时候要使用copy语义（要将从栈区拷贝到堆区，retain无效，即retain和assign会造成野指针问题，因为栈内存系统自动回收，指向的内容不可控）
+// 2.block释放的时候要使用专有的Block_release(&amp;lt;#…#&amp;gt;)（block区别于向内存静态申请空间(+all">
 <meta property="og:type" content="article">
-<meta property="og:title" content="指南针">
-<meta property="og:url" content="http://yoursite.com/2015/06/28/指南针/index.html">
+<meta property="og:title" content="关于block">
+<meta property="og:url" content="http://yoursite.com/2014/10/15/block/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1.准备一张罗盘图片
-2.代码实现
-首先设置三个属性
-
-@property (nonatomic, strong) CLLocationManager *manager;
-@property (nonatomic, strong) UIImageView *myImage;
-@property (nonatomic, assign) CLLocationDirection currentHeadi">
-<meta property="og:image" content="http://i12.tietuku.com/a805df144bb4c0e4.png">
-<meta property="og:updated_time" content="2015-12-10T07:33:05.000Z">
+<meta property="og:description" content="一些关于block的基础注意：使用block传值的注意事项
+// MRC
+// 1.block声明为属性的时候要使用copy语义（要将从栈区拷贝到堆区，retain无效，即retain和assign会造成野指针问题，因为栈内存系统自动回收，指向的内容不可控）
+// 2.block释放的时候要使用专有的Block_release(&amp;lt;#…#&amp;gt;)（block区别于向内存静态申请空间(+all">
+<meta property="og:updated_time" content="2015-12-05T07:57:30.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="指南针">
-<meta name="twitter:description" content="1.准备一张罗盘图片
-2.代码实现
-首先设置三个属性
-
-@property (nonatomic, strong) CLLocationManager *manager;
-@property (nonatomic, strong) UIImageView *myImage;
-@property (nonatomic, assign) CLLocationDirection currentHeadi">
+<meta name="twitter:title" content="关于block">
+<meta name="twitter:description" content="一些关于block的基础注意：使用block传值的注意事项
+// MRC
+// 1.block声明为属性的时候要使用copy语义（要将从栈区拷贝到堆区，retain无效，即retain和assign会造成野指针问题，因为栈内存系统自动回收，指向的内容不可控）
+// 2.block释放的时候要使用专有的Block_release(&amp;lt;#…#&amp;gt;)（block区别于向内存静态申请空间(+all">
 
 
 
@@ -91,7 +81,7 @@
   };
 </script>
 
-  <title> 指南针 | Hexo </title>
+  <title> 关于block | Hexo </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -211,7 +201,7 @@
             
             
               
-                指南针
+                关于block
               
             
           </h1>
@@ -220,8 +210,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-06-28T21:37:28+08:00" content="2015-06-28">
-              2015-06-28
+            <time itemprop="dateCreated" datetime="2014-10-15T15:50:54+08:00" content="2014-10-15">
+              2014-10-15
             </time>
           </span>
 
@@ -244,32 +234,15 @@
       
 
       
-        <span itemprop="articleBody"><h2 id="1-准备一张罗盘图片">1.准备一张罗盘图片</h2><p><img src="http://i12.tietuku.com/a805df144bb4c0e4.png" alt="Mou icon"></p>
-<h2 id="2-代码实现">2.代码实现</h2><ul>
-<li>首先设置三个属性</li>
-</ul>
-<pre><code><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) CLLocationManager *manager;
-<span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">UIImageView</span> *myImage;
-<span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) CLLocationDirection currentHeading;    
-</code></pre><ul>
-<li>添加罗盘图片</li>
-</ul>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">_myImage = [[<span class="built_in">UIImageView</span> alloc] initWithImage:[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"compass.png"</span>]];</span><br><span class="line">    <span class="keyword">self</span><span class="variable">.view</span><span class="variable">.backgroundColor</span> = [<span class="built_in">UIColor</span> blackColor];</span><br><span class="line">    _myImage<span class="variable">.frame</span> = <span class="built_in">CGRectMake</span>(<span class="number">200</span>, <span class="number">200</span>, <span class="number">300</span>, <span class="number">300</span>);</span><br><span class="line">    _myImage<span class="variable">.center</span> = <span class="built_in">CGPointMake</span>(<span class="keyword">self</span><span class="variable">.view</span><span class="variable">.frame</span><span class="variable">.size</span><span class="variable">.width</span> / <span class="number">2</span>, <span class="keyword">self</span><span class="variable">.view</span><span class="variable">.frame</span><span class="variable">.size</span><span class="variable">.height</span> / <span class="number">2</span>);</span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.view</span> addSubview:_myImage];</span><br></pre></td></tr></table></figure>
-<ul>
-<li>初始化manager并添加代理</li>
-</ul>
-<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span>.manager= [[CLLocationManager alloc]init];</span><br><span class="line">    _manager.<span class="keyword">delegate</span> = <span class="keyword">self</span>;</span><br></pre></td></tr></table></figure>
-<p>别忘了遵循CLLocationManagerDelegate协议</p>
-<ul>
-<li>进行定位</li>
-</ul>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//4. 如果传感器可用的话</span></span><br><span class="line"><span class="keyword">if</span> ([CLLocationManager headingAvailable]) &#123;</span><br><span class="line">        <span class="comment">//设置精度</span></span><br><span class="line">        <span class="keyword">self</span><span class="variable">.mapManager</span><span class="variable">.desiredAccuracy</span> = kCLLocationAccuracyBest;</span><br><span class="line">        <span class="comment">//开始更新</span></span><br><span class="line">        [<span class="keyword">self</span><span class="variable">.mapManager</span> startUpdatingHeading];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>在代理方法里实现图片旋转</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">_currentHeading = ((newHeading.trueHeading &gt; <span class="number">0</span>) ?</span><br><span class="line">                                      newHeading.trueHeading : newHeading.magneticHeading);</span><br><span class="line">   [UIView animateWithDuration:<span class="number">0.3</span> animations:^&#123;</span><br><span class="line">       _myImage.transform = CGAffineTransformRotate(CGAffineTransformIdentity, (CGFloat) -<span class="number">1</span> * _currentHeading * M_PI / <span class="number">180.0</span>);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>现在指南针已经写完了,比较简单,大家可以试着优化一下.</p>
+        <span itemprop="articleBody"><h4 id="一些关于block的基础">一些关于block的基础</h4><h4 id="注意：使用block传值的注意事项">注意：使用block传值的注意事项</h4><hr>
+<p>// MRC</p>
+<p>// 1.block声明为属性的时候要使用copy语义（要将从栈区拷贝到堆区，retain无效，即retain和assign会造成野指针问题，因为栈内存系统自动回收，指向的内容不可控）</p>
+<p>// 2.block释放的时候要使用专有的Block_release(&lt;#…#&gt;)（block区别于向内存静态申请空间(+alloc)的OC普通对象,不符合常规内存管理）</p>
+<p>// 3.在block实现部分，必须使用__block来修饰实例变量、self。（block会持有其内部变量，导致引用计数+1）</p>
+<hr>
+<p>// ARC</p>
+<p>// 1.block声明为属性的时候要使用strong语义,strong会自动将block拷贝一份到堆区</p>
+<p>// 2.在block实现部分，必须使用__weak来修饰实例变量、self。</p>
 </span>
       
     </div>
@@ -278,7 +251,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/iOS-指南针/" rel="tag">#iOS,指南针</a>
+            <a href="/tags/Objective-C/" rel="tag">#Objective-C</a>
           
         </div>
       
@@ -287,16 +260,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/06/10/使用WebViewJavascriptBridge实现OC与JS交互/" rel="next" title="使用WebViewJavascriptBridge实现OC与JS交互">
-                <i class="fa fa-chevron-left"></i> 使用WebViewJavascriptBridge实现OC与JS交互
+              <a href="/2014/10/02/第一篇/" rel="next" title="第一篇?">
+                <i class="fa fa-chevron-left"></i> 第一篇?
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/10/30/如何制作想淘宝口令一样的链接/" rel="prev" title="关于iOS的剪贴板基本知识">
-                关于iOS的剪贴板基本知识 <i class="fa fa-chevron-right"></i>
+              <a href="/2014/10/17/block中的self/" rel="prev" title="block中的self">
+                block中的self <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -411,7 +384,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-准备一张罗盘图片"><span class="nav-number">1.</span> <span class="nav-text">1.准备一张罗盘图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-代码实现"><span class="nav-number">2.</span> <span class="nav-text">2.代码实现</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一些关于block的基础"><span class="nav-number">1.</span> <span class="nav-text">一些关于block的基础</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注意：使用block传值的注意事项"><span class="nav-number">2.</span> <span class="nav-text">注意：使用block传值的注意事项</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

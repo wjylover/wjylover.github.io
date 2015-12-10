@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,指南针," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -51,35 +51,19 @@
 
 
 
-<meta name="description" content="1.准备一张罗盘图片
-2.代码实现
-首先设置三个属性
-
-@property (nonatomic, strong) CLLocationManager *manager;
-@property (nonatomic, strong) UIImageView *myImage;
-@property (nonatomic, assign) CLLocationDirection currentHeadi">
+<meta name="description" content="3DTouch">
 <meta property="og:type" content="article">
-<meta property="og:title" content="指南针">
-<meta property="og:url" content="http://yoursite.com/2015/06/28/指南针/index.html">
+<meta property="og:title" content="3DTouch、ShortcutItem、Peek And Pop">
+<meta property="og:url" content="http://yoursite.com/2015/11/10/3DTouch、ShortcutItem、Peek-And-Pop/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1.准备一张罗盘图片
-2.代码实现
-首先设置三个属性
-
-@property (nonatomic, strong) CLLocationManager *manager;
-@property (nonatomic, strong) UIImageView *myImage;
-@property (nonatomic, assign) CLLocationDirection currentHeadi">
-<meta property="og:image" content="http://i12.tietuku.com/a805df144bb4c0e4.png">
-<meta property="og:updated_time" content="2015-12-10T07:33:05.000Z">
+<meta property="og:description" content="3DTouch">
+<meta property="og:image" content="http://i12.tietuku.com/14bc7ec46d5364ab.jpg">
+<meta property="og:image" content="http://i12.tietuku.com/3aa54dab286d6e1c.jpg">
+<meta property="og:image" content="http://i12.tietuku.com/544e882ddf85ae59.jpg">
+<meta property="og:updated_time" content="2015-12-10T07:45:52.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="指南针">
-<meta name="twitter:description" content="1.准备一张罗盘图片
-2.代码实现
-首先设置三个属性
-
-@property (nonatomic, strong) CLLocationManager *manager;
-@property (nonatomic, strong) UIImageView *myImage;
-@property (nonatomic, assign) CLLocationDirection currentHeadi">
+<meta name="twitter:title" content="3DTouch、ShortcutItem、Peek And Pop">
+<meta name="twitter:description" content="3DTouch">
 
 
 
@@ -91,7 +75,7 @@
   };
 </script>
 
-  <title> 指南针 | Hexo </title>
+  <title> 3DTouch、ShortcutItem、Peek And Pop | Hexo </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -211,7 +195,7 @@
             
             
               
-                指南针
+                3DTouch、ShortcutItem、Peek And Pop
               
             
           </h1>
@@ -220,8 +204,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-06-28T21:37:28+08:00" content="2015-06-28">
-              2015-06-28
+            <time itemprop="dateCreated" datetime="2015-11-10T11:01:28+08:00" content="2015-11-10">
+              2015-11-10
             </time>
           </span>
 
@@ -244,59 +228,169 @@
       
 
       
-        <span itemprop="articleBody"><h2 id="1-准备一张罗盘图片">1.准备一张罗盘图片</h2><p><img src="http://i12.tietuku.com/a805df144bb4c0e4.png" alt="Mou icon"></p>
-<h2 id="2-代码实现">2.代码实现</h2><ul>
-<li>首先设置三个属性</li>
-</ul>
-<pre><code><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) CLLocationManager *manager;
-<span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">UIImageView</span> *myImage;
-<span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) CLLocationDirection currentHeading;    
-</code></pre><ul>
-<li>添加罗盘图片</li>
-</ul>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">_myImage = [[<span class="built_in">UIImageView</span> alloc] initWithImage:[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"compass.png"</span>]];</span><br><span class="line">    <span class="keyword">self</span><span class="variable">.view</span><span class="variable">.backgroundColor</span> = [<span class="built_in">UIColor</span> blackColor];</span><br><span class="line">    _myImage<span class="variable">.frame</span> = <span class="built_in">CGRectMake</span>(<span class="number">200</span>, <span class="number">200</span>, <span class="number">300</span>, <span class="number">300</span>);</span><br><span class="line">    _myImage<span class="variable">.center</span> = <span class="built_in">CGPointMake</span>(<span class="keyword">self</span><span class="variable">.view</span><span class="variable">.frame</span><span class="variable">.size</span><span class="variable">.width</span> / <span class="number">2</span>, <span class="keyword">self</span><span class="variable">.view</span><span class="variable">.frame</span><span class="variable">.size</span><span class="variable">.height</span> / <span class="number">2</span>);</span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.view</span> addSubview:_myImage];</span><br></pre></td></tr></table></figure>
+        <span itemprop="articleBody"><h3 id="3DTouch">3DTouch</h3><a id="more"></a>
+<p><img src="http://i12.tietuku.com/14bc7ec46d5364ab.jpg" alt=""></p>
+<h4 id="UITouch类里API的变化">UITouch类里API的变化</h4><h5 id="iOS9中添加的属性">iOS9中添加的属性</h5><p><code>altitudeAngle</code></p>
 <ul>
-<li>初始化manager并添加代理</li>
-</ul>
-<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span>.manager= [[CLLocationManager alloc]init];</span><br><span class="line">    _manager.<span class="keyword">delegate</span> = <span class="keyword">self</span>;</span><br></pre></td></tr></table></figure>
-<p>别忘了遵循CLLocationManagerDelegate协议</p>
-<ul>
-<li>进行定位</li>
-</ul>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//4. 如果传感器可用的话</span></span><br><span class="line"><span class="keyword">if</span> ([CLLocationManager headingAvailable]) &#123;</span><br><span class="line">        <span class="comment">//设置精度</span></span><br><span class="line">        <span class="keyword">self</span><span class="variable">.mapManager</span><span class="variable">.desiredAccuracy</span> = kCLLocationAccuracyBest;</span><br><span class="line">        <span class="comment">//开始更新</span></span><br><span class="line">        [<span class="keyword">self</span><span class="variable">.mapManager</span> startUpdatingHeading];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>在代理方法里实现图片旋转</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">_currentHeading = ((newHeading.trueHeading &gt; <span class="number">0</span>) ?</span><br><span class="line">                                      newHeading.trueHeading : newHeading.magneticHeading);</span><br><span class="line">   [UIView animateWithDuration:<span class="number">0.3</span> animations:^&#123;</span><br><span class="line">       _myImage.transform = CGAffineTransformRotate(CGAffineTransformIdentity, (CGFloat) -<span class="number">1</span> * _currentHeading * M_PI / <span class="number">180.0</span>);</span><br></pre></td></tr></table></figure>
+<li><p>当笔平行于平面时,该值为0</p>
+</li>
+<li><p>当笔垂直于平面时,该值为Pi / 2</p>
 </li>
 </ul>
-<p>现在指南针已经写完了,比较简单,大家可以试着优化一下.</p>
-</span>
+<p><code>estimatedProperties</code></p>
+<ul>
+<li><p>当前触摸对象估计的触摸特性</p>
+</li>
+<li><p>返回值是UITouchPropertyies</p>
+</li>
+</ul>
+<p><code>updatedProperties</code></p>
+<ul>
+<li><p>当前触摸对象已经更新的触摸特性</p>
+</li>
+<li><p>返回值是UITouchPropertyies</p>
+</li>
+</ul>
+<p><code>estimationUpdateIndex</code></p>
+<ul>
+<li><p>当每个触摸对象的触摸特性发生变化时，该值将会单独增加</p>
+</li>
+<li><p>返回值是NSNumber</p>
+</li>
+</ul>
+<h5 id="iOS9中添加的方法">iOS9中添加的方法</h5><p><code>- PreciseLocationInView:</code></p>
+<ul>
+<li><p>当前触摸对象的坐标<br><code>- PrecisePreviousLocationInView:</code></p>
+</li>
+<li><p>当前触摸对象的前置坐标<br><code>- azimuthAngleInview:</code></p>
+</li>
+<li><p>沿着x轴正向的方位角</p>
+</li>
+<li><p>当与x轴正向方向相同时,该值为0</p>
+</li>
+<li><p>当view参数为nil时，默认为keyWindow</p>
+</li>
+</ul>
+<p><code>- azimuthUnitVectorInView:</code></p>
+<ul>
+<li><p>当前触摸对象的方向上的单位向量</p>
+</li>
+<li><p>当view参数为nil时，默认为keyWindow</p>
+</li>
+</ul>
+<h4 id="UIForceTouchCapability">UIForceTouchCapability</h4><p><code>UIForceTouchCapabilityUnknown</code></p>
+<ul>
+<li>不能确定是否支持压力感应<br><code>UIForceTouchCapabilityUnavailable</code></li>
+<li>不能支持压力感应<br><code>UIForceTouchCapabilityAvailable</code></li>
+<li><p>可以支持压力感应</p>
+<h4 id="UITouchType">UITouchType</h4><p><code>UITouchTypeDirect</code></p>
+</li>
+<li><p>垂直的触摸类型<br><code>UITouchTypeIndirect</code></p>
+</li>
+<li>非初值的触摸类型<br><code>UITouchTypeStylus</code></li>
+<li>水平的触摸类型<br><code>UITouchProperties</code><br><code>UITouchPropertyForce</code></li>
+</ul>
+<hr>
+<h3 id="ShortcutItem">ShortcutItem</h3><hr>
+<p><img src="http://i12.tietuku.com/3aa54dab286d6e1c.jpg" alt=""></p>
+<h4 id="静态方式">静态方式</h4><ul>
+<li>打开Info.plist文件</li>
+<li><p>在对应UIApplicationShortcutItems关键字下添加item</p>
+<h4 id="动态方式">动态方式</h4><h5 id="修改当前应用程序的某个shortcutItem">修改当前应用程序的某个shortcutItem</h5><pre><code><span class="comment">//获取第0个shortcutItem  </span>
+id oldItem = [existingShortcutItems <span class="string">objectAtIndex:</span> <span class="number">0</span>];  
+<span class="comment">//将旧的shortcutItem改变为可修改类型shortcutItem  </span>
+id mutableItem = [oldItem mutableCopy];  
+<span class="comment">//修改shortcutItem的显示标题  </span>
+[mutableItem <span class="string">setLocalizedTitle:</span> @“Click Lewis”];
+</code></pre><h5 id="获取当前应用程序的shortcutItems">获取当前应用程序的shortcutItems</h5><pre><code><span class="comment">//获取当前应用程序对象  </span>
+<span class="built_in">UIApplication</span> *app = [<span class="built_in">UIApplication</span> sharedApplication];  
+<span class="comment">//获取一个应用程序对象的shortcutItem列表  </span>
+<span class="keyword">id</span> existingShortcutItems = [app shortcutItems];
+</code></pre><h5 id="重置当前应用程序的shortcutItems">重置当前应用程序的shortcutItems</h5><pre><code><span class="comment">//根据旧的shortcutItems生成可变shortcutItems数组  </span>
+id updatedShortcutItems = [existingShortcutItems mutableCopy];  
+<span class="comment">//修改可变shortcutItems数组中对应index下的元素为新的shortcutItem  </span>
+[updatedShortcutItems <span class="string">replaceObjectAtIndex:</span> <span class="number">0</span> <span class="string">withObject:</span> mutableItem];  
+<span class="comment">//修改应用程序对象的shortcutItems为新的数组  </span>
+[app <span class="string">setShortcutItems:</span> updatedShortcutItems];
+</code></pre><h5 id="创建一个新的UIApplicationShortcutItem">创建一个新的UIApplicationShortcutItem</h5></li>
+<li><p>初始化函数</p>
+<ul>
+<li>initWithType:localizedTitle:localizedSubtitle:icon:userInfo:</li>
+<li>initWithType:localizedTitle:</li>
+</ul>
+</li>
+<li><p>属性</p>
+<ul>
+<li><p>localizedTitle:NSString</p>
+</li>
+<li><p>localizedSubtitle:NSString</p>
+</li>
+<li><p>type:NSString</p>
+</li>
+<li><p>icon:UIApplicationShortcutIcon</p>
+</li>
+<li><p>userInfo:NSDictionary</p>
+</li>
+<li><p>只有只读特性，想要进行修改时，需要通过mutableCopy方法转变为<br>NSMutableApplicationShortcutItem</p>
+<h4 id="创建一个新的Item图标">创建一个新的Item图标</h4></li>
+</ul>
+</li>
+<li><p>初始化函数</p>
+<ul>
+<li><p>iconWithType:</p>
+</li>
+<li><p>iconWithTemplateImageName:</p>
+</li>
+<li><p>iconWithContact:</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="当程序启动时">当程序启动时</h4><ul>
+<li>判断launchOptions字典内的UIApplicationLaunchOptionsShortcutItemKey是否为空</li>
+<li>当不为空时,application:didFinishLaunchWithOptions方法返回false，否则返回true</li>
+<li>在application:performActionForShortcutItem:completionHandler方法内处理点击事件</li>
+</ul>
+<hr>
+<h3 id="Peek_and_Pop">Peek and Pop</h3><hr>
+<p><img src="http://i12.tietuku.com/544e882ddf85ae59.jpg" alt=""><br>注册预览功能的代理对象和源视图<br>代理对象需要接受UIViewControllerPreviewingDelegate协议<br>  @interface RootVC<uiviewcontrollerpreviewingdelegate><br>  {}<br>  @end<br>代理对象实现协议内的Peek和Pop方法</uiviewcontrollerpreviewingdelegate></p>
+<pre><code><span class="class"><span class="keyword">@implementation</span> <span class="title">RootVC</span>  </span>
+- (<span class="built_in">UIViewController</span> *)previewingContext:(<span class="keyword">id</span>&lt;<span class="built_in">UIViewControllerPreviewing</span>&gt;)context viewControllerForLocation:(<span class="built_in">CGPoint</span>) point  
+{  
+<span class="built_in">UIViewController</span> *childVC = [[<span class="built_in">UIViewController</span> alloc] init];  
+childVC<span class="variable">.preferredContentSize</span> = <span class="built_in">CGSizeMake</span>(<span class="number">0.0</span>f,<span class="number">300</span>f);  
+
+<span class="built_in">CGRect</span> rect = <span class="built_in">CGRectMake</span>(<span class="number">10</span>, point<span class="variable">.y</span> - <span class="number">10</span>, <span class="keyword">self</span><span class="variable">.view</span><span class="variable">.frame</span><span class="variable">.size</span><span class="variable">.width</span> - <span class="number">20</span>,<span class="number">20</span>);  
+context<span class="variable">.sourceRect</span> = rect;  
+<span class="keyword">return</span> childVC;  
+}  
+- (<span class="keyword">void</span>)previewContext:(<span class="keyword">id</span>&lt;<span class="built_in">UIViewControllerPreviewing</span>&gt;)context commitViewController:(<span class="built_in">UIViewController</span>*)vc  
+{  
+[<span class="keyword">self</span> showViewController:vc sender:<span class="keyword">self</span>];  
+}  
+<span class="keyword">@end</span>
+</code></pre><h4 id="注册方法声明在UIViewController类内">注册方法声明在UIViewController类内</h4><pre><code>[<span class="keyword">self </span>registerForPreviewingWithDelegate:<span class="keyword">self </span>sourceView:<span class="keyword">self.view]; </span>      
+</code></pre></span>
       
     </div>
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/iOS-指南针/" rel="tag">#iOS,指南针</a>
-          
-        </div>
       
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/06/10/使用WebViewJavascriptBridge实现OC与JS交互/" rel="next" title="使用WebViewJavascriptBridge实现OC与JS交互">
-                <i class="fa fa-chevron-left"></i> 使用WebViewJavascriptBridge实现OC与JS交互
+              <a href="/2015/11/10/NSURLSession下载与缓存/" rel="next" title="NSURLSession下载与缓存">
+                <i class="fa fa-chevron-left"></i> NSURLSession下载与缓存
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/10/30/如何制作想淘宝口令一样的链接/" rel="prev" title="关于iOS的剪贴板基本知识">
-                关于iOS的剪贴板基本知识 <i class="fa fa-chevron-right"></i>
+              <a href="/2015/11/20/使用WKWebView替换UIWebView/" rel="prev" title="使用WKWebView替换UIWebView">
+                使用WKWebView替换UIWebView <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -411,7 +505,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-准备一张罗盘图片"><span class="nav-number">1.</span> <span class="nav-text">1.准备一张罗盘图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-代码实现"><span class="nav-number">2.</span> <span class="nav-text">2.代码实现</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#3DTouch"><span class="nav-number">1.</span> <span class="nav-text">3DTouch</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#UITouch类里API的变化"><span class="nav-number">1.1.</span> <span class="nav-text">UITouch类里API的变化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#iOS9中添加的属性"><span class="nav-number">1.1.1.</span> <span class="nav-text">iOS9中添加的属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#iOS9中添加的方法"><span class="nav-number">1.1.2.</span> <span class="nav-text">iOS9中添加的方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UIForceTouchCapability"><span class="nav-number">1.2.</span> <span class="nav-text">UIForceTouchCapability</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UITouchType"><span class="nav-number">1.3.</span> <span class="nav-text">UITouchType</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ShortcutItem"><span class="nav-number">2.</span> <span class="nav-text">ShortcutItem</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#静态方式"><span class="nav-number">2.1.</span> <span class="nav-text">静态方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态方式"><span class="nav-number">2.2.</span> <span class="nav-text">动态方式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#修改当前应用程序的某个shortcutItem"><span class="nav-number">2.2.1.</span> <span class="nav-text">修改当前应用程序的某个shortcutItem</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#获取当前应用程序的shortcutItems"><span class="nav-number">2.2.2.</span> <span class="nav-text">获取当前应用程序的shortcutItems</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#重置当前应用程序的shortcutItems"><span class="nav-number">2.2.3.</span> <span class="nav-text">重置当前应用程序的shortcutItems</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#创建一个新的UIApplicationShortcutItem"><span class="nav-number">2.2.4.</span> <span class="nav-text">创建一个新的UIApplicationShortcutItem</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建一个新的Item图标"><span class="nav-number">2.3.</span> <span class="nav-text">创建一个新的Item图标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#当程序启动时"><span class="nav-number">2.4.</span> <span class="nav-text">当程序启动时</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Peek_and_Pop"><span class="nav-number">3.</span> <span class="nav-text">Peek and Pop</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#注册方法声明在UIViewController类内"><span class="nav-number">3.1.</span> <span class="nav-text">注册方法声明在UIViewController类内</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
